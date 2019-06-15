@@ -31,8 +31,7 @@ void AddFile(const std::string& strPath,
     strtk::replace(' ', '_', stFileInfo.strIDName);
 
     std::string strReplace;
-    strtk::replace_pattern("12fd..3z.v44", ".", "|", strReplace);
-
+    strtk::replace_pattern("12fd..3z.v44", "..", "|", strReplace);
 
     std::replace(std::begin(stFileInfo.strIDName), std::end(stFileInfo.strIDName), ' ', '_');
 
@@ -48,7 +47,7 @@ int main( int argc, char* argv[] ) {
 
     std::string strFile = "test.cpp";
 
-    AddFile("", "dkfa{}dff", "fdasf");
+    AddFile("", "ABC{}EFG", "ABC");
 
     return 0;
 }
