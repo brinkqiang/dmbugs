@@ -1630,24 +1630,32 @@ void remove_empty_strings( std::multiset<std::string, Comparator, Allocator>&
     }
 }
 
-template <typename Iterator>
-inline void replace( const typename std::iterator_traits<Iterator>::value_type&
-                     c1,
-                     const typename std::iterator_traits<Iterator>::value_type& c2,
-                     const Iterator begin,
-                     const Iterator end ) {
-    for ( Iterator itr = begin; end != itr; ++itr ) {
-        if ( c1 == ( *itr ) ) {
-            ( *itr ) = c2;
-        }
-    }
-}
+//template <typename Iterator>
+//inline void replace( const typename std::iterator_traits<Iterator>::value_type&
+//                     c1,
+//                     const typename std::iterator_traits<Iterator>::value_type& c2,
+//                     const Iterator begin,
+//                     const Iterator end ) {
+//
+//    for ( Iterator itr = begin; end != itr; ++itr ) {
+//        if ( c1 == ( *itr ) ) {
+//            ( *itr ) = c2;
+//        }
+//    }
+//}
 
 inline void replace( const std::string::value_type& c0,
                      const std::string::value_type& c1,
                      std::string& s ) {
-    replace( c0, c1, const_cast<char*>( s.data() ),
-             const_cast<char*>( s.data() + s.size() ) );
+    std::replace(std::begin(s), std::end(s), c0, c1);
+}
+
+inline std::string replace(const std::string& str0,
+    const std::string& str1,
+    std::string& s) {
+    std::string strOut = s;
+    replace_pattern(s, str0, str1, strOut);
+    return std::move(strOut);
 }
 
 template <typename T>
